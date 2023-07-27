@@ -2,34 +2,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.*;
+
 interface ClientOperations {
+    void ajouterClient();
+
     void ajouterClient(Client client);
     void afficherClients();
     void modifierClient(int id);
     void supprimerClient(int id);
     void enregistrerClients();
 
-    void commander(Client client, String menu);
-
-    void afficherCommandes();
 }
 
 interface Operations {
     void commander(Client client, String menu);
 
-    default void afficherCommandes() {
-        afficherCommandes(null);
-    }
+    void listedescommandes(Client client);
 
-    void afficherCommandes(Client client);
 }
 
 public abstract class gestionnaireClients implements ClientOperations, Operations {
-    private List<Client> clients;
-    private Scanner scanner;
+    private final List<Client> clients;
+    private final Scanner scanner;
     private int choix;
     private String nom;
     private String prenom;
+    private int Age ;
     private int tel;
     private int idModification;
     private int idSuppression;
@@ -46,10 +45,12 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
     private String nomClient3;
     private String nomClient4;
     private String nomClient5;
+    private Client client;
+
 
     public gestionnaireClients() {
         clients = new ArrayList<>();
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(in);
     }
 
     public static void main(String[] args) {
@@ -58,22 +59,28 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
             public void commander(Client client, String menu) {
 
             }
+
+            @Override
+            public void listedescommandes(Client client) {
+
+            }
+
         };
         gestionnaire.afficherMenu();
     }
 
     public void afficherMenu() {
         do {
-            System.out.println("=== Gestionnaire de clients ===");
-            System.out.println("1. Ajouter un client");
-            System.out.println("2. Afficher les clients");
-            System.out.println("3. Modifier un client");
-            System.out.println("4. Supprimer un client");
-            System.out.println("5. Enregistrer les clients");
-            System.out.println("6. Commander un menu");
-            System.out.println("7. Afficher les commandes d'un client");
-            System.out.println("0. Quitter");
-            System.out.print("Votre choix : ");
+            out.println("=== Gestionnaire de clients ===");
+            out.println("1. Ajouter un client");
+            out.println("2. Afficher les clients");
+            out.println("3. Modifier un client");
+            out.println("4. Supprimer un client");
+            out.println("5. Enregistrer les clients");
+            out.println("6. Commander un menu");
+            out.println("7. Afficher les commandes d'un client");
+            out.println("0. Quitter");
+            out.print("Votre choix : ");
 
             choix = scanner.nextInt();
             scanner.nextLine();
@@ -98,32 +105,33 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
                     commander();
                     break;
                 case 7:
-                    afficherCommandes();
+                    listedescomandes() ;
                     break;
                 case 0:
-                    System.out.println("Au revoir !");
+                    out.println("Au revoir !");
                     break;
                 default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    out.println("Choix invalide. Veuillez réessayer.");
             }
 
-            System.out.println();
+            out.println();
         } while (choix != 0);
     }
-
     public void ajouterClient() {
-        System.out.println("=== Ajouter un client ===");
-        System.out.print("Nom : ");
+        out.println("=== Ajouter un client ===");
+        out.print("Nom : ");
         nom = scanner.nextLine();
-        System.out.print("Prénom : ");
+        out.print("Prénom : ");
         prenom = scanner.nextLine();
-        System.out.print("Numero de telephone : ");
+        out.print("Age : ");
+        Age = Integer.parseInt(scanner.nextLine());
+        out.print("Numero de telephone : ");
         tel= scanner.nextInt();
 
-        Client client = new Client(nom, prenom, tel);
+        Client client = new Client(nom, prenom, tel , Age);
         ajouterClient(client);
 
-        System.out.println("Le client a été ajouté avecsuccès !");
+        out.println("Le client a été ajouté avec succès !");
     }
 
     @Override
@@ -133,15 +141,20 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
 
     @Override
     public void afficherClients() {
-        System.out.println("=== Gestionnaire de clients ===");
+        out.println("=== Gestionnaire de clients ===");
         for (Client client : clients) {
-            System.out.println(client);
+            out.println("Nom: " + client.getNom());
+            out.println("Prénom: " + client.getPrenom());
+            out.println("Âge: " + client.getAge());
+            out.println("Téléphone: " + client.getTel());
+            out.println("Menu: " + client.getMenu());
+            out.println("-------------------------");
         }
     }
 
     public void modifierClient() {
-        System.out.println("=== Modifier un client ===");
-        System.out.print("ID du client : ");
+        out.println("=== Modifier un client ===");
+        out.print("ID du client : ");
         idModification = scanner.nextInt();
 
         modifierClient(idModification);
@@ -154,9 +167,9 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
         for (Client client : clients) {
             if (client.getId() == id) {
 
-                System.out.print("Nouvel âge : ");
+                out.print("Nouveau numero de telephone : ");
                 tel = scanner.nextInt();
-                client.setAge(tel);
+                client.setTel(tel);
 
                 clientTrouve = true;
                 break;
@@ -164,15 +177,15 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
         }
 
         if (clientTrouve) {
-            System.out.println("Le client a été modifié avec succès !");
+            out.println("Le client a été modifié avec succès !");
         } else {
-            System.out.println("Aucun client trouvé avec cet ID.");
+            out.println("Aucun client trouvé avec cet ID.");
         }
     }
 
     public void supprimerClient() {
-        System.out.println("=== Supprimer un client ===");
-        System.out.print("ID du client : ");
+        out.println("=== Supprimer un client ===");
+        out.print("ID du client : ");
         idSuppression = scanner.nextInt();
 
         supprimerClient(idSuppression);
@@ -191,75 +204,73 @@ public abstract class gestionnaireClients implements ClientOperations, Operation
         }
 
         if (clientTrouve) {
-            System.out.println("Le client a été supprimé avec succès !");
+            out.println("Le client a été supprimé avec succès !");
         } else {
-            System.out.println("Aucun client trouvé avec cet ID.");
+            out.println("Aucun client trouvé avec cet ID.");
         }
     }
 
     @Override
     public void enregistrerClients() {
-        System.out.println("=== Enregistrer les clients ===");
-        System.out.println("Les clients ont été enregistrés avec succès !");
+        out.println("=== Enregistrer les clients ===");
+        out.println("Les clients ont été enregistrés avec succès !");
     }
 
     public void commander() {
-        System.out.println("=== Commander un menu ===");
-        System.out.print("ID du client : ");
+        out.println("=== Commander un menu ===");
+        out.print("ID du client : ");
         idCommande = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Menu : ");
+        out.print("Menu : ");
         Commander = scanner.nextLine();
 
-        for (Client client : clients) {
+        for (Client client : clients)
             if (client.getId() == idCommande) {
                 commander(client, Commander);
                 break;
             }
-        }
     }
 
     @Override
     public void commander(Client client, String menu) {
         client.setMenu(menu);
-        System.out.println("Le menu a été commandé avec succès !");
+        out.println("Le menu a été commandé avec succès !");
     }
-
-    @Override
-    public void afficherCommandes() {
-        System.out.println("=== Afficher les commandes d'un client ===");
-        System.out.print("ID du client : ");
+    public void listedescomandes() {
+        out.println("=== Afficher les commandes d'un client ===");
+        out.print("ID du client : ");
         idAffichage = scanner.nextInt();
 
-        for (Client client : clients) {
+        for (Client client : clients)
             if (client.getId() == idAffichage) {
-                afficherCommandes(client);
+                listedescomandes();
                 break;
             }
-        }
+           out.println("Commandes de " + client.getNom() + " " + client.getPrenom() + " :");
+           out.println("Menu : " + client.getMenu());
     }
-
-    @Override
-    public void afficherCommandes(Client client) {
-        System.out.println("Commandes de " + client.getNom() + " " + client.getPrenom() + " :");
-        System.out.println("Menu : " + client.getMenu());
+    public void listedesCommandes(Client client) {
+        out.println("Commandes de " + client.getNom() + " " + client.getPrenom() + " :");
+        out.println("Menu : " + client.getMenu());
     }
 }
 
 class Client {
     private static int compteurId = 0;
-    private int id;
+    private final int id;
     private String nom;
     private String prenom;
-    private int age;
+    private int tel;
+    private int Age;
     private String menu;
 
-    public Client(String nom, String prenom, int age) {
+    public Client(String nom, String prenom, int tel, int age) {
         this.id = ++compteurId;
         this.nom = nom;
         this.prenom = prenom;
-        this.age = age;
+        this.tel = tel;
+        this.Age = Age;
         this.menu = "";
     }
 
@@ -283,12 +294,19 @@ class Client {
         this.prenom = prenom;
     }
 
-    public int getAge() {
-        return age;
+    public int getTel() {
+        return tel;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setTel(int tel) {
+    }
+
+    public void setAge(int tel) {
+        this.tel = tel;
+    }
+
+    public int getAge() {
+        return Age;
     }
 
     public String getMenu() {
@@ -301,6 +319,10 @@ class Client {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Nom: " + nom + ", Prénom: " + prenom + ", Âge: " + age;
+        String s = "ID: " + id + ", Nom: " + nom + ", Prénom: " + prenom + " ,Age " + Age + ", Numero de telephone: " + tel;
+        return s;
     }
 }
+
+
+
