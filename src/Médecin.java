@@ -1,0 +1,2 @@
+public class Médecin {
+}
