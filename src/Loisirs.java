@@ -2,19 +2,11 @@ public abstract class Loisirs {
     private String nom;
     private String description;
 
-    public Loisirs(String nom, String description) {
-        this.nom = nom;
-        this.description = description;
-    }
 
-    protected Loisirs() {
-    }
 
 
     public void afficher() {
-        System.out.println("Loisir : Loisirs.Sport");
-        System.out.println("Nom : " + getNom());
-        System.out.println("Description : " + getDescription());
+
     }
 
 

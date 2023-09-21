@@ -11,27 +11,6 @@ public abstract class Personne {
 
 
 
-
-    public Personne(int Id , String nom, String prenom, Date dateNaissance, String adresse) {
-        this.Id = Id ;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.adresse = adresse;
-    }
-
-    public Personne(int Id ,String nom, String prenom,String tel ,String email ) {
-        this.Id = Id ;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.tel= tel ;
-        this.email= email ;
-    }
-
-    protected Personne() {
-    }
-
-
     public String getNom() {
         return nom;
     }
@@ -62,13 +41,7 @@ public abstract class Personne {
 
 
     public void afficher() {
-        System.out.println("ID : " + Id);
-        System.out.println("Nom : " + nom);
-        System.out.println("Prénom : " + prenom);
-        System.out.println("Date de naissance : " + dateNaissance);
-        System.out.println("Téléphone : " + tel);
-        System.out.println("Email : " + email);
-        System.out.println("Adresse : " + adresse);
+
     }
 
     public void setTel(String nouveauTel) {
@@ -282,8 +255,6 @@ public abstract class Personne {
 
         }
 
-        protected Stagiere() {
-        }
 
 
         public String getNom() {
