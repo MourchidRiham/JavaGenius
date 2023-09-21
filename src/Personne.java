@@ -1,14 +1,16 @@
 import java.util.Date;
 
 public abstract class Personne {
-    private int Id ;
-    private String nom;
-    private String prenom;
-    private Date dateNaissance;
-    private String tel ;
-    private String email ;
-    private String adresse ;
+    private static int Id ;
+    private static String nom;
+    private static String prenom;
+    private static Date dateNaissance;
+    private static String tel ;
+    private static String email ;
+    private static String adresse ;
 
+    public Personne(int id, String nom, String prenom) {
+    }
 
 
     public String getNom() {
@@ -54,70 +56,25 @@ public abstract class Personne {
     }
 
     public static class Professeur extends Personne{
-        private int Id ;
-        private String nom;
-        private String prenom;
-        private Date dateNaissance;
-        private String tel ;
-        private String email ;
-        private String adresse ;
-        private String matiere ;
 
-        public Professeur(){
-
-        }
+     private String matiere ;
 
 
         public Professeur(int Id ,String nom, String prenom, Date dateNaissance) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.dateNaissance = dateNaissance;
+            super(Id , nom , prenom);
         }
 
         public Professeur(int Id ,String nom, String prenom,String tel ,String email ) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.tel= tel ;
-            this.email= email ;
+            super(Id , nom , prenom);;
         }
         public Professeur(int Id ,String nom, String prenom,String matiere ) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
+            super(Id , nom , prenom);
             this.matiere= matiere;
         }
 
 
         // Getters et setters
-        public String getNom() {
-            return nom;
-        }
 
-        public String getPrenom() {
-            return prenom;
-        }
-
-        public Date getDateNaissance() {
-            return dateNaissance;
-        }
-
-        public int getId() {
-            return Id;
-        }
-
-        public String getAdresse() {
-            return adresse;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getTel() {
-            return tel;
-        }
 
         public String getMatiere() {
             return matiere;
@@ -134,73 +91,25 @@ public abstract class Personne {
             System.out.println("Adresse : " + adresse);
             System.out.println("Matiere : " + matiere);
         }
-      }
+    }
 
     public static class Etudiant extends Personne{
-        private int Id ;
-        private String nom;
-        private String prenom;
-        private Date dateNaissance;
-        private String tel ;
-        private String email ;
-        private String adresse ;
+
         private String niveau ;
-
-        public Etudiant(int etudiantId, String etudiantNom, String etudiantPrenom, Date etudiantDateNaissance, String etudiantNiveau){
-
-        }
 
 
         public Etudiant(int Id ,String nom, String prenom, Date dateNaissance) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.dateNaissance = dateNaissance;
+            super(Id , nom , prenom);
         }
 
         public Etudiant(int Id ,String nom, String prenom,String tel ,String email ) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.tel= tel ;
-            this.email= email ;
+            super(Id , nom , prenom);
         }
         public Etudiant(int Id ,String nom, String prenom,String niveau) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
+            super(Id , nom , prenom);
             this.niveau= niveau;
         }
 
-
-
-        public String getNom() {
-            return nom;
-        }
-
-        public String getPrenom() {
-            return prenom;
-        }
-
-        public Date getDateNaissance() {
-            return dateNaissance;
-        }
-
-        public int getId() {
-            return Id;
-        }
-
-        public String getAdresse() {
-            return adresse;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getTel() {
-            return tel;
-        }
 
         public String getNiveau() {
             return niveau;
@@ -220,70 +129,26 @@ public abstract class Personne {
     }
 
     public static class Stagiere extends Personne {
-        private int Id ;
-        private String nom;
-        private String prenom;
-        private Date dateNaissance;
-        private String tel ;
-        private String email ;
-        private String adresse ;
+
         private String dureeStage ;
 
 
 
 
         public Stagiere(int Id , String nom, String prenom, Date dateNaissance, String adresse) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.dateNaissance = dateNaissance;
-            this.adresse = adresse;
+            super(Id , nom , prenom);
         }
 
         public Stagiere(int Id ,String nom, String prenom,String tel ,String email ) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.tel= tel ;
-            this.email= email ;
+            super(Id , nom , prenom);
         }
         public Stagiere(int Id ,String nom, String prenom , String dureeStage ) {
-            this.Id = Id ;
-            this.nom = nom;
-            this.prenom = prenom;
+            super(Id , nom , prenom );
             this.dureeStage= dureeStage ;
 
         }
 
 
-
-        public String getNom() {
-            return nom;
-        }
-
-        public String getPrenom() {
-            return prenom;
-        }
-
-        public Date getDateNaissance() {
-            return dateNaissance;
-        }
-
-        public int getId() {
-            return Id;
-        }
-
-        public String getAdresse() {
-            return adresse;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getTel() {
-            return tel;
-        }
         public String getDureeStage () {
             return dureeStage;
         }
@@ -299,7 +164,7 @@ public abstract class Personne {
             System.out.println("Duree de Stage : " + dureeStage);
         }
 
-        }
+    }
 }
 
 

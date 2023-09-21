@@ -1,8 +1,9 @@
 public abstract class Loisirs {
-    private String nom;
-    private String description;
+    private static String nom;
+    private static String description;
 
-
+    public Loisirs(String nom, String description) {
+    }
 
 
     public void afficher() {
@@ -18,18 +19,17 @@ public abstract class Loisirs {
         return description;
     }
 
-    public static class Sport extends Loisirs {
-        private String nom;
-        private String description;
+    public class Sport extends Loisirs {
+
+
         private String discipline;
 
         public Sport (){
-
+            super(nom, description);
         }
 
         public Sport(String nom, String description, String discipline) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.discipline = discipline;
         }
 
@@ -56,23 +56,15 @@ public abstract class Loisirs {
     }
 
     public static class Musique extends Loisirs {
-        private String nom;
-        private String description;
+
         private String instrument;
 
         public Musique(String nom, String description, String instrument) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.instrument = instrument;
         }
         public Musique (){
-
-        }
-        public String getNom() {
-            return nom;
-        }
-        public String getDescription() {
-            return description;
+            super(nom, description);
         }
         public String getInstrument() {
             return instrument;
@@ -87,28 +79,20 @@ public abstract class Loisirs {
         }
 
     public static class Lecture extends Loisirs {
-        private String nom;
-        private String description;
+
         private String typeDeLecture;
 
         public Lecture (){
-
-        }
+            super(nom, description);
+      }
 
         public Lecture(String nom, String description, String typeDeLecture) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.typeDeLecture = typeDeLecture;
         }
 
 
-        public String getNom() {
-            return nom;
-        }
 
-        public String getDescription() {
-            return description;
-        }
 
         public String getTypeDeLecture() {
             return typeDeLecture;
@@ -124,24 +108,15 @@ public abstract class Loisirs {
     }
 
     public static class Cuisine extends Loisirs {
-        private String nom;
-        private String description;
+
         private String typeDeCuisine;
 
 
         public Cuisine(String nom, String description, String typeDeCuisine) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.typeDeCuisine = typeDeCuisine;
         }
 
-        public String getNom() {
-            return nom;
-        }
-
-        public String getDescription() {
-            return description;
-        }
 
         public String getTypeDeCuisine() {
             return typeDeCuisine;
@@ -157,23 +132,15 @@ public abstract class Loisirs {
     }
 
     public static class Voyage extends Loisirs {
-        private String nom;
-        private String description;
+
         private String typeDeVoyage;
 
         public Voyage(String nom, String description, String typeDeVoyage) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.typeDeVoyage = typeDeVoyage;
         }
 
-        public String getNom() {
-            return nom;
-        }
 
-        public String getDescription() {
-            return description;
-        }
         public String getTypeDeVoyage() {
             return typeDeVoyage;
         }
@@ -187,25 +154,17 @@ public abstract class Loisirs {
         }
     }
 
-    // Classe concrète Loisirs.Art qui hérite de Loisirs
+
     public static class Art extends Loisirs {
-        private String nom;
-        private String description;
+
         private String formeDart;
 
         public Art(String nom, String description, String formeDart) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.formeDart = formeDart;
         }
 
-        public String getNom() {
-            return nom;
-        }
 
-        public String getDescription() {
-            return description;
-        }
         public String getFormeDart() {
             return formeDart;
         }
@@ -221,23 +180,15 @@ public abstract class Loisirs {
 
     public static class Jeux extends Loisirs {
 
-        private String nom;
-        private String description;
+
         private String typeDeJeux;
 
         public Jeux(String nom, String description, String typeDeJeux) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.typeDeJeux = typeDeJeux;
         }
 
-        public String getDescription() {
-            return description;
-        }
 
-        public String getNom() {
-            return nom;
-        }
         public String getTypeDeJeux() {
             return typeDeJeux;
         }
@@ -252,24 +203,15 @@ public abstract class Loisirs {
     }
 
     public static class Dance extends Loisirs {
-        private String nom;
-        private String description;
+
         private String styleDeDanse;
 
         public Dance(String nom, String description, String styleDeDanse) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.styleDeDanse = styleDeDanse;
         }
 
-        public String getNom() {
-            return nom;
-        }
 
-
-        public String getDescription() {
-            return description;
-        }
         public String getStyleDeDanse() {
             return styleDeDanse;
         }
@@ -283,30 +225,30 @@ public abstract class Loisirs {
         }
     }
 
-    // Classe concrète Loisirs.Jardinage qui hérite de Loisirs
+
     public static class Jardinage extends Loisirs {
         private String nom;
         private String description;
         private String typeDeJardinage;
 
         public Jardinage(String nom, String description, String typeDeJardinage) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.typeDeJardinage = typeDeJardinage;
         }
 
-        // Getter pour le type de jardinage
+
         public String getTypeDeJardinage() {
             return typeDeJardinage;
         }
-        public String getNom() {
-            return nom;
+
+        public void setTypeDeJardinage(String typeDeJardinage) {
+            this.typeDeJardinage = typeDeJardinage;
         }
 
-        public String getDescription() {
-            return description;
-        }
 
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
         @Override
         public void afficher() {
@@ -318,23 +260,15 @@ public abstract class Loisirs {
     }
 
     public static class Theatre extends Loisirs {
-        private String nom;
-        private String description;
+
         private String genreTheatral;
 
         public Theatre(String nom, String description, String genreTheatral) {
-            this.nom = nom;
-            this.description = description;
+            super(nom, description);
             this.genreTheatral = genreTheatral;
         }
 
-        public String getNom() {
-            return nom;
-        }
 
-        public String getDescription() {
-            return description;
-        }
         public String getGenreTheatral() {
             return genreTheatral;
         }
