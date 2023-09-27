@@ -1,8 +1,12 @@
 public abstract class Loisirs {
+
+
     private static String nom;
     private static String description;
 
     public Loisirs(String nom, String description) {
+        this.nom = nom ;
+        this.description = description ;
     }
 
 
@@ -19,7 +23,7 @@ public abstract class Loisirs {
         return description;
     }
 
-    public class Sport extends Loisirs {
+    public static class Sport extends Loisirs {
 
 
         private String discipline;
@@ -72,9 +76,9 @@ public abstract class Loisirs {
        @Override
         public void afficher() {
             System.out.println("Loisir : Loisirs.Musique");
-            System.out.println("Nom : " + getNom());
-            System.out.println("Description : " + getDescription());
-            System.out.println("Instrument : " + getInstrument());
+            System.out.println("Nom : Piano" + getNom());
+            System.out.println("Description :Jouer du piano " + getDescription());
+            System.out.println("Instrument : PANO A QUEU" + getInstrument());
         }
         }
 
